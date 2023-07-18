@@ -1,0 +1,21 @@
+// 1:14:00 min de clas 15; 
+     
+
+    filas
+        tres botones retiro, info y eliminar, retiro para obtener el monto y para registrar en bd e info para alertar
+        cuando se retira o elimina que la tabla quede vacia y en "libre" 0 libre 1 ocupado si no se puede bolean 
+        
+        si no hay tal campo que figure como en una var boleana como "libre"
+        si no hay cochera libre no se envia el formulario
+
+    busqueda
+        estilos para la busqueda
+        busqueda de cochera y bd
+
+    sistema de cobro
+        minimo 1hr, cuando supera la hora va por 1/4 15 mins 
+        en ayudas esta el codigo
+
+    esta todo mal aca
+
+INSERT INTO `tbl_cochera`(`cochera`, `nombre`, `apellido`, `marca`, `modelo`, `dominio`, `color`, `tipo`, `obs`, `fechain`, `horain`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]','[value-10]','[value-11]')
