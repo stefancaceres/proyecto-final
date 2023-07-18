@@ -1,36 +1,56 @@
 <?php 
     require_once("./templates/header.php");
     require_once("./db.php");
+    // Mostrar tabla:
     $sentencia = $conexion->prepare("SELECT * FROM `tbl_cochera`");
     $sentencia->execute();
     $list_tbl_cochera = $sentencia->fetchAll(pdo::FETCH_ASSOC);
-    // print_r($list_tbl_cochera);
+    // Editar tabla:
     if($_POST){
-    // recolectar los datos del metodo post
-    $nombre=(isset($_POST["nombre"]) ? $_POST["nombre"] : "");
-    $apellido=(isset($_POST["apellido"]) ? $_POST["apellido"] : "");
-    $marca=(isset($_POST["marca"]) ? $_POST["marca"] : "");
-    $modelo=(isset($_POST["modelo"]) ? $_POST["modelo"] : "");
-    $dom=(isset($_POST["dom"]) ? $_POST["dom"] : "");
-    $color=(isset($_POST["color"]) ? $_POST["color"] : "");
-    $tipo=(isset($_POST["tipo"]));
-    $obs=(isset($_POST["obs"]) ? $_POST["obs"] : "");
-    $fechain=(isset($_POST["fechain"]) ? $_POST["fechain"] : "");
-    $horain=(isset($_POST["horain"]) ? $_POST["horain"] : "");
-    $formulario = $conexion->prepare("INSERT INTO `tbl_cochera`(`cochera`, `nombre`, `apellido`, `marca`, `modelo`, `dominio`, `color`, `tipo`, `obs`, `fechain`, `horain`) VALUES (null,:nombre,:apellido,:marca,:modelo,:dom,:color,:tipo,:obs,:fechain,:horain)");
-    $formulario->bindValue(":nombre",$nombre);
-    $formulario->bindValue(":apellido",$apellido);
-    $formulario->bindValue(":marca",$marca);
-    $formulario->bindValue(":modelo",$modelo);
-    $formulario->bindValue(":dom",$dom);
-    $formulario->bindValue(":color",$color);
-    $formulario->bindValue(":tipo",$tipo);
-    $formulario->bindValue(":obs",$obs);
-    $formulario->bindValue(":fechain",$fechain);
-    $formulario->bindValue(":horain",$horain);
-    $formulario->execute();
-    // header()
+        // recolectar los datos del método post
+        $nombre = (isset($_POST["nombre"])? $_POST["nombre"] : "");
+        $apellido = (isset($_POST["apellido"])? $_POST["apellido"] : "");
+        $marca = (isset($_POST["marca"])? $_POST["marca"] : "");
+        $modelo = (isset($_POST["modelo"])? $_POST["modelo"] : "");
+        $dom = (isset($_POST["dom"])? $_POST["dom"] : "");
+        $color = (isset($_POST["color"])? $_POST["color"] : "");
+        $tipo = (isset($_POST["tipo"]));
+        $obs = (isset($_POST["obs"])? $_POST["obs"] : "");
+        $fechain = (isset($_POST["fechain"])? $_POST["fechain"] : "");
+        $horain = (isset($_POST["horain"])? $_POST["horain"] : "");
+    
+        // buscar la primera fila vacía en la tabla
+        $formulario = $conexion->prepare("SELECT * FROM `tbl_cochera` WHERE `nombre` = '' AND `apellido` = '' AND `marca` = '' AND `modelo` = '' AND `dominio` = '' AND `color` = '' AND `obs` = '' LIMIT 1");
+        $formulario->execute();
+        $fila = $formulario->fetch(PDO::FETCH_ASSOC);
+        $ncochera = $fila["cochera"];
+    
+        if ($fila) {
+            // actualizar la fila en la tabla
+            $formulario = $conexion->prepare("UPDATE `tbl_cochera` SET `nombre` = :nombre, `apellido` = :apellido, `marca` = :marca, `modelo` = :modelo, `dominio` = :dominio, `color` = :color, `tipo` = :tipo, `obs` = :obs, `fechain` = :fechain, `horain` = :horain where `cochera` = $ncochera");
+            $formulario->bindValue(":nombre", $nombre);
+            $formulario->bindValue(":apellido", $apellido);
+            $formulario->bindValue(":marca", $marca);
+            $formulario->bindValue(":modelo", $modelo);
+            $formulario->bindValue(":dominio", $dom);
+            $formulario->bindValue(":color", $color);
+            $formulario->bindValue(":tipo", $tipo);
+            $formulario->bindValue(":obs", $obs);
+            $formulario->bindValue(":fechain", $fechain);
+            $formulario->bindValue(":horain", $horain);
+            $formulario->execute();
+        } else {
+            // mostrar mensaje de cochera llena
+            ?>
+            <script>
+                alert("Hay más espacio disponible. Por favor, rellene uno de los campos vacíos.");
+            </script>
+            <?php
+        }
+    
+        // header()
     };
+    
 ?>
 
 
