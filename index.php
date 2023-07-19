@@ -43,7 +43,7 @@
             // mostrar mensaje de cochera llena
             ?>
             <script>
-                alert("Hay más espacio disponible. Por favor, rellene uno de los campos vacíos.");
+                alert("No hay más espacio disponible. Se debe retirar un auto primero.");
             </script>
             <?php
         }
@@ -127,8 +127,8 @@
                             class="form-control formu " name="horain" id="horain" placeholder=" ">
                             <label for="horain">Hora de ingreso</label>
                         </div>
-                        <button type="submit" class="boton btn btn-primary w-100">
-                            <p class=" textboton">
+                        <button type="submit" class="boton btn btn-primary w-100" >
+                            <p class=" textboton" href="./index.php" >
                                 Almacenar vehiculo
                             </p>
                         </button>
@@ -167,8 +167,15 @@
                                         <td>
                                             <?php echo $registro ['apellido'] . ' ' ; echo $registro['nombre']; ?>
                                         </td>
+                                        <td>
+                                            <button class="boton btn btn-primary" onclick="mostrarMiniPantalla()">Editar</button>
+                                        </td>
                                     </tr>
                                     <?php } ?>
+                                    <div id="mini-pantalla" style="display: none;">
+                                        <h2>Cochera N°: $registro</h2>
+                                        <p>Contenido de la mini pantalla</p>
+                                    </div>
                                 </tbody>
                             </table>
                         </div>

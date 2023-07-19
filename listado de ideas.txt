@@ -16,6 +16,13 @@
         minimo 1hr, cuando supera la hora va por 1/4 15 mins 
         en ayudas esta el codigo
 
-    esta todo mal aca
+    prevent default 
+        prevent defaul cuando se utiliza el boton Almacenar y 
+
+
+
+    dudas:
+        form "tipo" no lo reconoce
+        prevent default
 
 INSERT INTO `tbl_cochera`(`cochera`, `nombre`, `apellido`, `marca`, `modelo`, `dominio`, `color`, `tipo`, `obs`, `fechain`, `horain`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]','[value-10]','[value-11]')

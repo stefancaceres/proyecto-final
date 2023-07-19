@@ -20,7 +20,7 @@
 <body class="">
     <header>
         <nav class=" nave navbar navbar-expand justify-content-around ">
-            <ul class="nav-item">
+            <ul class="nav-item contlinks">
                 <a class="nav-link " href="<?php echo $url_base ?>">
                     <h3> Inicio</h3>
                 </a>
@@ -30,7 +30,7 @@
                     Cochera virtual
                 </h1>
             </div>
-            <ul class="nav-item">
+            <ul class="nav-item contlinks">
                 <a class="nav-link" href="<?php echo $url_base ?>secciones/busqueda/buscar.php">
                     <h3>Busqueda </h3>
                 </a>

@@ -9,6 +9,13 @@
     border-radius: 2%;
 }
 
+.contlinks{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
 body{
     /* height: 100vh; */
     background-color: rgb(102, 100, 100);
@@ -50,6 +57,7 @@ body{
     text-decoration: solid;
     margin: auto;
     font-size: 20px;
+    color: aliceblue;
 }
 
 .ncochera{
