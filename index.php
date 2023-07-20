@@ -2,9 +2,11 @@
     require_once("./templates/header.php");
     require_once("./db.php");
     // Mostrar tabla:
-    $sentencia = $conexion->prepare("SELECT * FROM `tbl_cochera`");
-    $sentencia->execute();
-    $list_tbl_cochera = $sentencia->fetchAll(pdo::FETCH_ASSOC);
+    $verTabla = $conexion->prepare("SELECT * FROM `tbl_cochera`");
+    $verTabla->execute();
+    $list_tbl_cochera = $verTabla->fetchAll(pdo::FETCH_ASSOC);
+
+
     // Editar tabla:
     if($_POST){
         // recolectar los datos del método post
@@ -23,10 +25,11 @@
         $formulario = $conexion->prepare("SELECT * FROM `tbl_cochera` WHERE `nombre` = '' AND `apellido` = '' AND `marca` = '' AND `modelo` = '' AND `dominio` = '' AND `color` = '' AND `obs` = '' LIMIT 1");
         $formulario->execute();
         $fila = $formulario->fetch(PDO::FETCH_ASSOC);
-        $ncochera = $fila["cochera"];
+        
     
         if ($fila) {
             // actualizar la fila en la tabla
+            $ncochera = $fila["cochera"];
             $formulario = $conexion->prepare("UPDATE `tbl_cochera` SET `nombre` = :nombre, `apellido` = :apellido, `marca` = :marca, `modelo` = :modelo, `dominio` = :dominio, `color` = :color, `tipo` = :tipo, `obs` = :obs, `fechain` = :fechain, `horain` = :horain where `cochera` = $ncochera");
             $formulario->bindValue(":nombre", $nombre);
             $formulario->bindValue(":apellido", $apellido);
@@ -39,17 +42,29 @@
             $formulario->bindValue(":fechain", $fechain);
             $formulario->bindValue(":horain", $horain);
             $formulario->execute();
+            header("Location:index.php");
         } else {
             // mostrar mensaje de cochera llena
             ?>
             <script>
-                alert("No hay más espacio disponible. Se debe retirar un auto primero.");
+                document.getElementById('msjLleno').style.display = 'block';
             </script>
             <?php
         }
-    
-        // header()
     };
+
+    // Eliminar fila
+    if(isset($_GET["txtID"])){
+        // se recolecta los datos de get
+        $txtID = ((isset($_GET["txtID"])) ? $_GET["txtID"] : "");
+        // se prepara la eliminacion de tabla
+        $borrarTabla = $conexion->prepare("DELETE FROM `tbl_cochera` WHERE `cochera`=:id");
+        // se asigna los valores del get a la consulta
+        $borrarTabla->bindValue(":id", $txtID);
+        $borrarTabla->execute();
+            header("Location:index.php");
+    }
+
     
 ?>
 
@@ -58,6 +73,11 @@
         <div class="container cont mt-2 mb-5">
             <div class="row ">
                 <!-- primera col -->
+                <!-- primera columna -->
+                <!-- primera columna -->
+                <!-- primera columna -->
+                <!-- primera columna -->
+                <!-- primera columna -->
                 <div class="col-md-4 contformu">
                     <div class="contitulo"> 
                         <h3 class="display-6 fw-bold titulo">
@@ -127,14 +147,31 @@
                             class="form-control formu " name="horain" id="horain" placeholder=" ">
                             <label for="horain">Hora de ingreso</label>
                         </div>
-                        <button type="submit" class="boton btn btn-primary w-100" >
+                        <button type="submit" class="boton botonformu btn btn-primary w-100" >
                             <p class=" textboton" href="./index.php" >
                                 Almacenar vehiculo
                             </p>
                         </button>
+                        <!-- alertas de error -->
+                        <div class="alert alert-danger aviso " id="msjRellenar" role="alert" >
+                            <!-- <strong>Vehiculo no ingresado.</strong> Rellene todos los campos -->
+                            <h4 class="alert-heading">Vehiculo no ingresado.</h4>
+                            <p>Rellene todos los campos por favor.</p>
+                        </div>
+                        <div class="alert alert-danger aviso"  id="msjLleno" role="alert">
+                            <!-- <strong>Vehiculo no ingresado.</strong> Rellene todos los campos -->
+                            <h4 class="alert-heading">Vehiculo no ingresado.</h4>
+                            <p>La cochera no tiene mas espacio, retire algun vehiculo para poder ingresar otro.</p>
+                        </div>
+                        
                     </form>
                 </div>
                 
+
+                <!-- segunda columna -->
+                <!-- segunda columna -->
+                <!-- segunda columna -->
+                <!-- segunda columna -->
                 <!-- segunda columna -->
                 <div class="col-md contcochera">
                     <div class="contitulo">
@@ -153,8 +190,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <!-- filas -->
                                     <?php foreach ($list_tbl_cochera as $registro) {?>
-                                    <tr class="">
+                                    <tr class="slot">
                                         <td scope="row">
                                             <?php echo $registro ['cochera']; ?>
                                         </td>
@@ -168,13 +206,68 @@
                                             <?php echo $registro ['apellido'] . ' ' ; echo $registro['nombre']; ?>
                                         </td>
                                         <td>
-                                            <button class="boton btn btn-primary" onclick="mostrarMiniPantalla()">Editar</button>
+                                            <a class=" btn btn-primary" href="index.php?txtID=<?php echo $registro ['cochera']; ?>" data-bs-toggle="modal" data-bs-target="#ventanaEmergente" >Ver</a>
                                         </td>
                                     </tr>
                                     <?php } ?>
-                                    <div id="mini-pantalla" style="display: none;">
-                                        <h2>Cochera N°: $registro</h2>
-                                        <p>Contenido de la mini pantalla</p>
+                                    <!-- Ventana emergente de datos -->
+                                    <!-- Ventana emergente de datos -->
+                                    <div class="modal fade" id="ventanaEmergente" tabindex="-1" aria-labelledby="ventanaEmergenteLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content ventanaedit">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="ventanaEmergenteLabel">
+                                                    Datos de la cochera N°<?php echo $registro ['cochera']; ?>
+                                                </h3>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" >
+                                                <h5 style="display: inline;">
+                                                    Nombre del propietario: 
+                                                </h5>
+                                                <p>
+                                                <?php echo $registro ['apellido'] . ' ' ; echo $registro['nombre']; ?>
+                                                </p>
+                                                <h5 style="display: inline;">
+                                                    Datos del vehiculo: 
+                                                </h5>
+                                                <p>
+                                                <?php echo $registro ['marca'] . ' ' ; echo $registro['modelo'] . ' ' ; echo $registro['color']; ?>
+                                                </p>
+                                                <h5 style="display: inline;">
+                                                    Dominio del vehiculo: 
+                                                </h5>
+                                                <p>
+                                                <?php echo $registro['dominio']; ?>
+                                                </p>
+                                                <h5 style="display: inline;">
+                                                    Tipo de vehiculo: 
+                                                </h5>
+                                                <p>
+                                                <?php echo $registro ['tipo']; ?>
+                                                </p>
+                                                <h5 style="display: inline;">
+                                                    Observaciones: 
+                                                </h5>
+                                                <p>
+                                                <?php echo $registro ['obs'] ; ?>
+                                                </p>
+                                                <h5 style="display: inline;">
+                                                    Fecha de ingreso: 
+                                                </h5>
+                                                <p>
+                                                <?php echo $registro ['fechain'] . ' a la hora ' ; echo $registro['horain']; ?>
+                                                </p>
+                                            </div>
+                                            <!-- botones -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary">Editar</button>
+                                                <button type="button" class="btn btn-warning" href="index.php?txtID=">Retirar</button>
+                                                <button type="button" class="btn btn-danger">Eliminar</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </tbody>
                             </table>
@@ -186,5 +279,5 @@
 
 
 
-    <!-- <script src="./scripts.js"></script> -->
+<script src="./scripts.js"></script>
 <?php require_once("./templates/footer.php") ?>

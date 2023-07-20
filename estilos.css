@@ -25,16 +25,13 @@ body{
     margin-top: 200px;
 }
 
-
+/* formulario */
 .titulo{
     /* margin: auto; */
     color:rgb(0, 0, 0);
     text-align: center;
 }
-.boton{
-    height: 50px;
-    
-}
+
 
 .contformu{
     /* outline: 2px solid blueviolet; */
@@ -43,6 +40,7 @@ body{
     border: solid 2px rgb(44, 168, 96) ;
     background: rgb(81, 85, 85) ;
     padding-bottom: 20px;
+    
 }
 
 .custom-input{
@@ -52,12 +50,24 @@ body{
     background-color: rgb(180, 178, 178);
 }
 
+.botonformu{
+    height: 50px;
+    margin-bottom: 10px;
+}
 
 .textboton{
     text-decoration: solid;
     margin: auto;
     font-size: 20px;
     color: aliceblue;
+}
+
+.nocampos{
+    margin-top: 5px;
+}
+
+.aviso{
+    display: none;
 }
 
 .ncochera{
@@ -72,28 +82,34 @@ body{
     /* height: 900px; */
     /* outline: 2px solid blueviolet; */
     border-radius: 1%;
-    border: solid 2px rgb(44, 168, 96) ;
+    border: solid 2px rgb(44, 168, 96) ; 
     background: rgb(81, 85, 85) ;
+    /* border: solid 2px rgb(0, 0, 0) ;
+    background: rgb(44, 168, 96); */
 } 
 
 .slot{
-    display: flex;
-    height: 100px;
     outline: rgb(29, 29, 29) solid 2px;
-    padding-top: 2px;
-    padding-left: 6px;
-    margin: 5px;
-    background-color: rgb(180, 178, 178);
+    background-color: rgb(44, 168, 96);
     border-radius: 1%;
+    margin-bottom: 5px;
+    margin: 5px;    
 }
 
-.desc{
+.ventanaedit{
+    /* background-color: rgb(180, 178, 178); */
+    /* border: solid 2px rgb(44, 168, 96) ; */
+    border: solid 2px rgb(0, 0, 0) ;
+    background-color: rgb(44, 168, 96);
+}
+
+/* .desc{
     margin: 0px;
 }
 
 .contdesc{
     margin-left: 5px;
-}
+} */
 
 .footer{
     /* display: flex; */

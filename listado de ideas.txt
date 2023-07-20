@@ -23,6 +23,83 @@
 
     dudas:
         form "tipo" no lo reconoce
-        prevent default
+        prevent default formu
+        como separo las columnas, tengo puesto margin pero el bs5 no me lo toma
+        no me toma los estilos en el footer
+        como hacer una url base para cualquier pc
 
 INSERT INTO `tbl_cochera`(`cochera`, `nombre`, `apellido`, `marca`, `modelo`, `dominio`, `color`, `tipo`, `obs`, `fechain`, `horain`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]','[value-10]','[value-11]')
+
+
+
+
+como se hace una ventana emergente
+
+Aquí te muestro un ejemplo de cómo hacerlo:
+
+Primero, crea un botón en tu página HTML que llame a una función JavaScript para mostrar la ventana emergente:
+Copy code<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ventanaEmergente">
+  Mostrar ventana emergente
+</button>
+En este ejemplo, se utiliza la clase 
+btn
+ para crear un botón y la clase 
+btn-primary
+ para darle un estilo. También se utiliza la clase 
+data-bs-toggle="modal"
+ para activar la ventana emergente y la clase 
+data-bs-target="#ventanaEmergente"
+ para especificar el ID de la ventana emergente.
+
+Luego, crea una ventana emergente en tu página HTML utilizando la clase 
+modal
+ de Bootstrap:
+Copy code<div class="modal fade" id="ventanaEmergente" tabindex="-1" aria-labelledby="ventanaEmergenteLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ventanaEmergenteLabel">Datos de la tabla</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Aquí se mostrarán los datos de la tabla.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+En este ejemplo, se utiliza la clase 
+modal
+ para crear una ventana emergente y la clase 
+fade
+ para hacer que la ventana emergente se muestre con una transición suave. También se utiliza la clase 
+modal-dialog
+ para crear un contenedor para el contenido de la ventana emergente y la clase 
+modal-content
+ para crear un contenedor para el encabezado, el cuerpo y el pie de página de la ventana emergente.
+
+En tu archivo JavaScript, utiliza la función 
+fetch()
+ para hacer una solicitud AJAX al servidor y obtener los datos de la tabla de la base de datos. Luego, utiliza la función 
+innerHTML
+ para mostrar los datos en la ventana emergente:
+Copy code<script>
+function mostrarVentanaEmergente() {
+  fetch('ruta/a/la/solicitud/ajax.php')
+   .then(response => response.json())
+   .then(data => {
+      var ventanaEmergente = document.getElementById('ventanaEmergente');
+      ventanaEmergente.querySelector('.modal-body').innerHTML = '';
+      for (var i = 0; i < data.length; i++) {
+        ventanaEmergente.querySelector('.modal-body').innerHTML += '<p>' + data[i].nombre + ' + data[i].apellido + ' ' data[i].email + '</p>';
+      }
+      ventanaEmergente.querySelector('.modal-title').innerHTML = 'Datos de la tabla';
+      ventanaEmergente.querySelector('.modal-footer button').innerHTML = 'Cerrar';
+      ventanaEmergente.querySelector('.modal-footer button').onclick = function() {
+        ventanaEmergente.querySelector('.modal-body').innerHTML = '';
+        ventanaEmergente.querySelector('.modal-title').innerHTML = 'Datos de la tabla';
+        ventanaEmergente.querySelector('.modal-footer button').innerHTML = 'Cerrar';
+        ventanaEmergente.querySelector('.modal-footer button').onclick = function() {
+          ventanaEmergente.querySelector('.modal-body').innerHTML

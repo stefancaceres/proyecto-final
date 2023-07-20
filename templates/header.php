@@ -1,5 +1,5 @@
 <?php 
-    $url_base="http://localhost/backend-dm/proyectos/proyecto%20final/"
+    $url_base="http://localhost/backend-dm/proyectos/proyecto%20final/";
 
 ?>
 
@@ -20,7 +20,7 @@
 <body class="">
     <header>
         <nav class=" nave navbar navbar-expand justify-content-around ">
-            <ul class="nav-item contlinks">
+            <ul class="nav-item contlinks  ">
                 <a class="nav-link " href="<?php echo $url_base ?>">
                     <h3> Inicio</h3>
                 </a>
