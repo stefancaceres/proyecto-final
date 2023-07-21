@@ -69,7 +69,7 @@
 ?>
 
 
-    <main>
+    
         <div class="container cont mt-2 mb-5">
             <div class="row ">
                 <!-- primera col -->
@@ -275,7 +275,7 @@
                 </div>
             </div>
         </div>
-    </main>
+   
 
 
 

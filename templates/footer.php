@@ -1,4 +1,4 @@
-
+</main>
 <footer>
         <div class="footer  ">
             <p class="powered">

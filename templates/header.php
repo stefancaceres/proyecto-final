@@ -1,6 +1,6 @@
 <?php 
-    $url_base="http://localhost/backend-dm/proyectos/proyecto%20final/";
-
+    // $url_base="http://localhost/backend-dm/proyectos/proyecto%20final/";
+    $url_base="http://localhost/trabajos/proyecto-final/";
 ?>
 
 <!doctype html>
@@ -15,14 +15,14 @@
     <!-- <link rel="stylesheet" href="../../proyecto final/estilos.css">
     <link rel="stylesheet" href="../estilos.css"> -->
     <!-- <link rel="stylesheet" href="../estilos.css"> -->
-    <link rel="stylesheet" href="./estilos.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body class="">
     <header>
         <nav class=" nave navbar navbar-expand justify-content-around ">
             <ul class="nav-item contlinks  ">
                 <a class="nav-link " href="<?php echo $url_base ?>">
-                    <h3> Inicio</h3>
+                    <h3>Inicio</h3>
                 </a>
             </ul>
             <div>
@@ -38,4 +38,4 @@
         </nav>
     </header>
 
-    
+    <main>
