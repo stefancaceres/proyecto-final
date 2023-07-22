@@ -1,4 +1,5 @@
 <?php 
+$path="../../";
 require_once("../../templates/header.php") ;
 require_once("../../db.php");
 // buscar la primera fila vacía en la tabla

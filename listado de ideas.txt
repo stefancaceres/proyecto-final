@@ -27,6 +27,8 @@
         como separo las columnas, tengo puesto margin pero el bs5 no me lo toma
         no me toma los estilos en el footer
         como hacer una url base para cualquier pc
+        como hacer el eliminar
+        como hacer que funcione txtID
 
 INSERT INTO `tbl_cochera`(`cochera`, `nombre`, `apellido`, `marca`, `modelo`, `dominio`, `color`, `tipo`, `obs`, `fechain`, `horain`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]','[value-10]','[value-11]')
 

@@ -43,6 +43,7 @@
             $formulario->bindValue(":horain", $horain);
             $formulario->execute();
             header("Location:index.php");
+            exit;
         } else {
             // mostrar mensaje de cochera llena
             ?>
@@ -53,18 +54,7 @@
         }
     };
 
-    // Eliminar fila
-    if(isset($_GET["txtID"])){
-        // se recolecta los datos de get
-        $txtID = ((isset($_GET["txtID"])) ? $_GET["txtID"] : "");
-        // se prepara la eliminacion de tabla
-        $borrarTabla = $conexion->prepare("DELETE FROM `tbl_cochera` WHERE `cochera`=:id");
-        // se asigna los valores del get a la consulta
-        $borrarTabla->bindValue(":id", $txtID);
-        $borrarTabla->execute();
-            header("Location:index.php");
-    }
-
+    
     
 ?>
 
@@ -148,7 +138,7 @@
                             <label for="horain">Hora de ingreso</label>
                         </div>
                         <button type="submit" class="boton botonformu btn btn-primary w-100" >
-                            <p class=" textboton" href="./index.php" >
+                            <p class=" textboton" id="" href="./index.php" >
                                 Almacenar vehiculo
                             </p>
                         </button>
@@ -197,7 +187,13 @@
                                             <?php echo $registro ['cochera']; ?>
                                         </td>
                                         <td>
-                                            <?php echo $registro ['marca'] . ' ' ; echo $registro['modelo'] . ' ' ;  echo $registro['color'];?>
+                                            <?php 
+                                            if($registro['modelo']==''){
+                                                echo 'Cochera vacia';
+                                            } else{
+                                            echo $registro ['marca'] . ' ' ; echo $registro['modelo'] . ' ' ; echo $registro['color'];
+                                            }
+                                            ?>
                                         </td>
                                         <td>
                                             <?php echo $registro ['dominio']; ?>
@@ -206,13 +202,12 @@
                                             <?php echo $registro ['apellido'] . ' ' ; echo $registro['nombre']; ?>
                                         </td>
                                         <td>
-                                            <a class=" btn btn-primary" href="index.php?txtID=<?php echo $registro ['cochera']; ?>" data-bs-toggle="modal" data-bs-target="#ventanaEmergente" >Ver</a>
+                                            <a class=" btn btn-primary" href="index.php?txtID=<?php echo $registro ['cochera']; ?>" data-bs-toggle="modal" data-bs-target="#ventanaEmergente<?php echo $registro ['cochera']; ?>" >Ver</a>
                                         </td>
                                     </tr>
-                                    <?php } ?>
                                     <!-- Ventana emergente de datos -->
                                     <!-- Ventana emergente de datos -->
-                                    <div class="modal fade" id="ventanaEmergente" tabindex="-1" aria-labelledby="ventanaEmergenteLabel" aria-hidden="true">
+                                    <div class="modal fade" id="ventanaEmergente<?php echo $registro ['cochera']; ?>" tabindex="-1" aria-labelledby="ventanaEmergenteLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content ventanaedit">
                                             <div class="modal-header">
@@ -266,9 +261,11 @@
                                                 <button type="button" class="btn btn-danger">Eliminar</button>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                             </div>
-                                            </div>
+                                        </div>            
                                         </div>
-                                    </div>
+                                        </div>
+                                    <?php } ?>
+                                    
                                 </tbody>
                             </table>
                         </div>

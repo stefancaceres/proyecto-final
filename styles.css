@@ -1,10 +1,17 @@
+:root{
+    --verde: rgb(44, 168, 96);
+    --gris: rgb(102, 100, 100);
+    --grisClaro: rgb(180, 178, 178);
+    --grisClaroFocus: rgb(224, 224, 224);
+    --grisOscuro: rgb(81, 85, 85);
+}
 * {
     padding: 0;
     box-sizing: border-box;
 }
 
 .nave{
-    background: rgb(44, 168, 96);
+    background: var(--verde);
     border: 2px black solid;
     border-radius: 2%;
 }
@@ -37,14 +44,14 @@ body{
     /* outline: 2px solid blueviolet; */
     margin-right: 40px;
     border-radius: 1%;
-    border: solid 2px rgb(44, 168, 96) ;
-    background: rgb(81, 85, 85) ;
+    border: solid 2px var(--verde) ;
+    background: var(--grisOscuro) ;
     padding-bottom: 20px;
     
 }
 
 .custom-input{
-    background-color: rgb(44, 168, 96) ;
+    background-color: var(--verde) ;
 }
 .formu{
     background-color: rgb(180, 178, 178);
@@ -93,7 +100,12 @@ body{
     background-color: rgb(44, 168, 96);
     border-radius: 1%;
     margin-bottom: 5px;
-    margin: 5px;    
+    /* margin: 5px;     */
+}
+
+.form-control:focus{
+    background-color: var(--grisClaroFocus);
+    border-color: var(--verde) ;
 }
 
 .ventanaedit{

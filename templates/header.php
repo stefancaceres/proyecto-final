@@ -1,6 +1,6 @@
 <?php 
-    // $url_base="http://localhost/backend-dm/proyectos/proyecto%20final/";
-    $url_base="http://localhost/trabajos/proyecto-final/";
+    $url_base="http://localhost/backend-dm/proyectos/proyecto%20final/";
+    // $url_base="http://localhost/trabajos/proyecto-final/";
 ?>
 
 <!doctype html>
@@ -15,7 +15,7 @@
     <!-- <link rel="stylesheet" href="../../proyecto final/estilos.css">
     <link rel="stylesheet" href="../estilos.css"> -->
     <!-- <link rel="stylesheet" href="../estilos.css"> -->
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="<?php echo isset($path)? $path:"" ?>styles.css">
 </head>
 <body class="">
     <header>
