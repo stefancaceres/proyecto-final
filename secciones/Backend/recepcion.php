@@ -28,8 +28,9 @@ function vaciar_registro($conexion, $txtID) {
 function retirar_vehiculo($conexion, $retirarID){
     // se prepara el pasaje de fila de tabla
     $pasaje = $conexion->prepare("INSERT INTO 'tbl_registro' ('ncochera', 'nombre', 'apellido', 'marca', 'modelo', 'dominio', 'color', 'tipo', 'obs', 'fechain', 'horain')
-    SELECT 'cochera', 'nombre', 'apellido' , 'marca', 'modelo', 'dominio', 'color', 'tipo', 'obs', 'fechain', 'horain'FROM 'tbl_cochera'");
+    SELECT 'cochera', 'nombre', 'apellido' , 'marca', 'modelo', 'dominio', 'color', 'tipo', 'obs', 'fechain', 'horain'FROM 'tbl_cochera' WHERE `cochera`=:id");
     // se asigna los valores del get a la consulta
+    $pasaje->bindValue(":id", $retirarID);  
     $pasaje->execute();
     vaciar_registro($conexion, $retirarID);
 }
