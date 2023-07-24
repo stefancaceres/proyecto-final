@@ -188,7 +188,7 @@
                                         </td>
                                         <td>
                                             <?php 
-                                            if($registro['modelo']==''){
+                                            if($registro['modelo']=='' && $registro['marca']==''){
                                                 echo 'Cochera vacia';
                                             } else{
                                             echo $registro ['marca'] . ' ' ; echo $registro['modelo'] . ' ' ; echo $registro['color'];
@@ -256,9 +256,9 @@
                                             </div>
                                             <!-- botones -->
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">Editar</button>
-                                                <button type="button" class="btn btn-warning" href="index.php?txtID=">Retirar</button>
-                                                <button type="button" class="btn btn-danger">Eliminar</button>
+                                                <a type="button" class="btn btn-primary">Editar</a>
+                                                <a type="button" class="btn btn-warning" href="./secciones/Backend/recepcion.php?txtID=<?php echo $registro ['cochera']; ?>">Retirar</a>
+                                                <a type="button" class="btn btn-danger" href="./secciones/Backend/recepcion.php?txtID=<?php echo $registro ['cochera']; ?>">Eliminar</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                             </div>
                                         </div>            
@@ -272,9 +272,5 @@
                 </div>
             </div>
         </div>
-   
-
-
-
 <script src="./scripts.js"></script>
 <?php require_once("./templates/footer.php") ?>
