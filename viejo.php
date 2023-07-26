@@ -25,3 +25,6 @@ if($_POST){
     $formulario->execute();
     // header()
     };
+
+
+    $buscaCochera = $conexion->prepare("SELECT * FROM `tbl_cochera` WHERE `nombre` = '$nombre' or `apellido` = '$apellido' or `marca` = '$marca' or `modelo` = '$modelo' or `dominio` = '$dom'");

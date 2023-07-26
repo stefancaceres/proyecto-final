@@ -53,9 +53,6 @@
             <?php
         }
     };
-
-    
-    
 ?>
 
 
@@ -137,11 +134,11 @@
                             class="form-control formu " name="horain" id="horain" placeholder=" ">
                             <label for="horain">Hora de ingreso</label>
                         </div>
-                        <button type="submit" class="boton botonformu btn btn-primary w-100" >
+                        <a type="submit" class="boton botonformu btn btn-primary w-100" >
                             <p class=" textboton" id="" href="./index.php" >
                                 Almacenar vehiculo
                             </p>
-                        </button>
+                        </a>
                         <!-- alertas de error -->
                         <div class="alert alert-danger aviso " id="msjRellenar" role="alert" >
                             <!-- <strong>Vehiculo no ingresado.</strong> Rellene todos los campos -->

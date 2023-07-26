@@ -104,7 +104,7 @@ body{
 }
 
 .form-control:focus{
-    background-color: var(--grisClaroFocus);
+    background: var(--grisClaroFocus);
     border-color: var(--verde) ;
 }
 
@@ -124,7 +124,6 @@ body{
 } */
 
 .footer{
-    /* display: flex; */
     color: rgb(124, 124, 126);
     height: 80px;
     background-color: rgb(3, 3, 3);
@@ -133,7 +132,6 @@ body{
     text-decoration: none;
     justify-content: left;
     box-sizing: border-box;
-    /* position: absolute; */
     bottom: 0%;
     width: 100%;
 }
