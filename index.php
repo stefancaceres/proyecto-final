@@ -54,9 +54,6 @@
         }
     };
 ?>
-
-
-    
         <div class="container cont mt-2 mb-5">
             <div class="row ">
                 <!-- primera col -->
@@ -134,11 +131,11 @@
                             class="form-control formu " name="horain" id="horain" placeholder=" ">
                             <label for="horain">Hora de ingreso</label>
                         </div>
-                        <a type="submit" class="boton botonformu btn btn-primary w-100" >
+                        <button type="submit" class="boton botonformu btn btn-primary w-100" >
                             <p class=" textboton" id="" href="./index.php" >
                                 Almacenar vehiculo
                             </p>
-                        </a>
+                        </button>
                         <!-- alertas de error -->
                         <div class="alert alert-danger aviso " id="msjRellenar" role="alert" >
                             <!-- <strong>Vehiculo no ingresado.</strong> Rellene todos los campos -->
@@ -150,7 +147,6 @@
                             <h4 class="alert-heading">Vehiculo no ingresado.</h4>
                             <p>La cochera no tiene mas espacio, retire algun vehiculo para poder ingresar otro.</p>
                         </div>
-                        
                     </form>
                 </div>
                 
@@ -254,8 +250,8 @@
                                             <!-- botones -->
                                             <div class="modal-footer">
                                                 <a type="button" class="btn btn-primary">Editar</a>
-                                                <a type="button" class="btn btn-warning" href="./secciones/Backend/recepcion.php?txtID=<?php echo $registro ['cochera']; ?>">Retirar</a>
-                                                <a type="button" class="btn btn-danger" href="./secciones/Backend/recepcion.php?txtID=<?php echo $registro ['cochera']; ?>">Eliminar</a>
+                                                <a type="button" class="btn btn-warning" href="./secciones/backend/recepcion.php?txtID=<?php echo $registro ['cochera']; ?>">Retirar</a>
+                                                <a type="button" class="btn btn-danger" href="./secciones/backend/recepcion.php?txtID=<?php echo $registro ['cochera']; ?>">Eliminar</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                             </div>
                                         </div>            

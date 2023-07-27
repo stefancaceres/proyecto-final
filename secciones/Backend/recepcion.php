@@ -34,6 +34,14 @@ function retirar_vehiculo($conexion, $retirarID){
     $pasaje->execute();
     vaciar_registro($conexion, $retirarID);
 }
+function buscar_vehiculo($conexion, $buscarID, $buscado){
+    // se prepara el pasaje de fila de tabla
+    $buscar = $conexion->prepare("SELECT * FROM `tbl_cochera` WHERE `dominio`=:id");
+    // se asigna los valores del get a la consulta
+    $buscar->bindValue(":id", $buscarID);  
+    $buscar->execute();
+    $buscado = $buscar->fetch(PDO::FETCH_ASSOC);
+}
 if(isset($_GET["txtID"])){
     // se recolecta los datos de get
     $txtID = ((isset($_GET["txtID"])) ? $_GET["txtID"] : "");
@@ -42,6 +50,13 @@ if(isset($_GET["txtID"])){
     // se recolecta los datos de get
     $retirarID = ((isset($_GET["retirarID"])) ? $_GET["retirarID"] : "");
     retirar_vehiculo($conexion, $retirarID);    
+} elseif(isset($_GET["buscarID"])){
+    // se recolecta los datos de get
+    $buscarID = ((isset($_GET["buscarID"])) ? $_GET["buscarID"] : "");
+    buscar_vehiculo($conexion, $buscarID, $buscado); 
+    header("Location:../busqueda/buscado.php?buscarID=");
+    print_r($buscado);
+    exit;
 }
 // if(isset($_GET["retirarID"])){
 //     $retirarID = ((isset($_GET["retirarID"])) ? $_GET["retirarID"] : "");

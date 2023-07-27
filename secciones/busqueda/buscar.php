@@ -3,24 +3,26 @@ $path="../../";
 require_once("../../templates/header.php") ;
 require_once("../../db.php");
 // Mostrar tabla:
+$verTabla = $conexion->prepare("SELECT * FROM `tbl_cochera`");
+$verTabla->execute();
+$list_tbl_cochera = $verTabla->fetchAll(pdo::FETCH_ASSOC);
 $verTabla2 = $conexion->prepare("SELECT * FROM `tbl_registro`");
 $verTabla2->execute();
 $list_tbl_registro = $verTabla2->fetchAll(pdo::FETCH_ASSOC);
 // buscador
-if($_POST){
-    $nombre = (isset($_POST["nombre"])? $_POST["nombre"] : "");
-    $apellido = (isset($_POST["apellido"])? $_POST["apellido"] : "");
-    $marca = (isset($_POST["marca"])? $_POST["marca"] : "");
-    $modelo = (isset($_POST["modelo"])? $_POST["modelo"] : "");
-    $dom = (isset($_POST["dom"])? $_POST["dom"] : "");
-    $buscaCochera = $conexion->prepare("SELECT * FROM `tbl_cochera` WHERE `dominio` = '$dom'");
-    $buscaCochera->execute();
-    $busq = $buscaCochera->fetch(PDO::FETCH_ASSOC);
+// if($_POST){
+//     $nombre = (isset($_POST["nombre"])? $_POST["nombre"] : "");
+//     $apellido = (isset($_POST["apellido"])? $_POST["apellido"] : "");
+//     $marca = (isset($_POST["marca"])? $_POST["marca"] : "");
+//     $modelo = (isset($_POST["modelo"])? $_POST["modelo"] : "");
+//     $dom = (isset($_POST["dom"])? $_POST["dom"] : "");
+//     $buscaCochera = $conexion->prepare("SELECT * FROM `tbl_cochera` WHERE `dominio` = '$dom'");
+//     $buscaCochera->execute();
+//     $busq = $buscaCochera->fetch(PDO::FETCH_ASSOC);
     // $verTabla = $conexion->prepare("SELECT * FROM `tbl_cochera`");
     // $verTabla->execute();
     // $list_tbl_cochera = $verTabla->fetchAll(pdo::FETCH_ASSOC);
-};
-print_r($busq);
+// };
 ?>
 
 <!-- inicio main -->
@@ -35,7 +37,7 @@ print_r($busq);
                     Busqueda de vehiculo en cochera
                 </h3>
             </div>
-            <form action="" method="post">
+            <form action="./buscado.php" method="post">
                 <div class="form-floating mb-3">
                     <input
                     type="text"
@@ -63,7 +65,7 @@ print_r($busq);
                 <div class="form-floating mb-3">
                     <input
                     type="text"
-                    class="form-control formu " name="dom" id="dom" href="index.php?txtID=<?php echo $busq ['cochera']; ?>" placeholder=" ">
+                    class="form-control formu " name="dom" id="dom" placeholder=" ">
                     <label for="dom">Dominio</label>
                 </div>
                 <div class="form-floating mb-3">
@@ -72,12 +74,12 @@ print_r($busq);
                     class="form-control formu  " name="color" id="color" placeholder=" ">
                     <label for="color">Color</label>
                 </div>
+                <button type="submit" class="boton botonformu btn btn-primary w-100">
+                    <p class=" textboton">
+                        Buscar vehiculo
+                    </p>
+                </button>
             </form>
-            <a type="submit" class="boton botonformu btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#ventanaEmergente">
-                <p class=" textboton"  >
-                    Buscar vehiculo
-                </p>
-            </a>
                         <!-- alertas de error -->
             <div class="alert alert-danger aviso " id="msjRellenar" role="alert" >
                         <!-- <strong>Vehiculo no ingresado.</strong> Rellene todos los campos -->
@@ -270,8 +272,8 @@ print_r($busq);
                                 <!-- botones -->
                                 <div class="modal-footer">
                                     <a type="button" class="btn btn-primary">Editar</a>
-                                    <a type="button" class="btn btn-warning" href="./secciones/Backend/recepcion.php?txtID=<?php echo $registro ['ncochera']; ?>">Retirar</a>
-                                    <a type="button" class="btn btn-danger" href="./secciones/Backend/recepcion.php?txtID=<?php echo $registro ['ncochera']; ?>">Eliminar</a>
+                                    <a type="button" class="btn btn-warning" href="./secciones/backend/recepcion.php?txtID=<?php echo $registro ['ncochera']; ?>">Retirar</a>
+                                    <a type="button" class="btn btn-danger" href="./secciones/backend/recepcion.php?txtID=<?php echo $registro ['ncochera']; ?>">Eliminar</a>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>            
