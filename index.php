@@ -238,7 +238,6 @@
                                             </div>
                                             <!-- botones -->
                                             <div class="modal-footer">
-                                                <a type="button" class="btn btn-primary">Editar</a>
                                                 <a type="button" class="btn btn-warning" href="./secciones/backend/recepcion.php?retirarID=<?php echo $registro ['cochera']; ?>">Retirar</a>
                                                 <a type="button" class="btn btn-danger" href="./secciones/backend/recepcion.php?txtID=<?php echo $registro ['cochera']; ?>">Eliminar</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
