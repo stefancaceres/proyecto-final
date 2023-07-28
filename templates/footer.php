@@ -1,6 +1,6 @@
 </main>
 <footer>
-        <div class="footer  ">
+        <div class="footer" style="bottom: 0%;">
             <p class="powered">
                 Powered by 2023 &copy;
                 <a class="mio  " href="https://stefan-caceres.netlify.app/" target="_blank" rel="noopener noreferrer">
@@ -8,7 +8,7 @@
                 </a>
             </p>
         </div>
-    </footer>
+</footer>
 
 
 

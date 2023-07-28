@@ -1,72 +1,61 @@
 <?php 
 require_once("../../db.php");
-// Vaciar fila
-// if(isset($_GET["txtID"]) && $_GET["bandera"]==='eliminar' )
-// if(isset($_GET["txtID"])){
-//     // se recolecta los datos de get
-//     $txtID = ((isset($_GET["txtID"])) ? $_GET["txtID"] : "");
-//     // se prepara la eliminacion de tabla
-//     $vaciarTabla = $conexion->prepare("UPDATE `tbl_cochera` SET `nombre`='',`apellido`='',`marca`='',`modelo`='',`dominio`='',`color`='',`tipo`='',`obs`='',`fechain`='',`horain`='' where `cochera`=:id");
-//     // se asigna los valores del get a la consulta
-//     $vaciarTabla->bindValue(":id", $txtID);
-//     $vaciarTabla->execute();
-//         header("Location:../../index.php");
-//         exit;
-// };
-// Definir la función para eliminar un registro de la tabla
 function vaciar_registro($conexion, $txtID) {
-    // Preparar la consulta SQL para eliminar el registro
+    // Preparar la consulta SQL para vaciar la fila
     $vaciarTabla = $conexion->prepare("UPDATE `tbl_cochera` SET `nombre`='',`apellido`='',`marca`='',`modelo`='',`dominio`='',`color`='',`tipo`='',`obs`='',`fechain`='',`horain`='' where `cochera`=:id");  
     // Asignar el valor del ID al parámetro de la consulta
     $vaciarTabla->bindValue(":id", $txtID);  
     // Ejecutar la consulta
     $vaciarTabla->execute();  
-    // Redirigir al usuario a la página de inicio
-    header("Location:../../index.php");
-    exit;
+    
+}
+function borrar_registro($conexion, $borrarID) {
+    // Preparar la consulta SQL para eliminar el registro
+    $vaciarTabla = $conexion->prepare("DELETE FROM `tbl_registro` WHERE `id`=:id");  
+    // Asignar el valor del ID al parámetro de la consulta
+    $vaciarTabla->bindValue(":id", $borrarID);  
+    // Ejecutar la consulta
+    $vaciarTabla->execute();  
+    
 }
 function retirar_vehiculo($conexion, $retirarID){
-    // se prepara el pasaje de fila de tabla
-    $pasaje = $conexion->prepare("INSERT INTO 'tbl_registro' ('ncochera', 'nombre', 'apellido', 'marca', 'modelo', 'dominio', 'color', 'tipo', 'obs', 'fechain', 'horain')
-    SELECT 'cochera', 'nombre', 'apellido' , 'marca', 'modelo', 'dominio', 'color', 'tipo', 'obs', 'fechain', 'horain'FROM 'tbl_cochera' WHERE `cochera`=:id");
-    // se asigna los valores del get a la consulta
-    $pasaje->bindValue(":id", $retirarID);  
-    $pasaje->execute();
-    vaciar_registro($conexion, $retirarID);
-}
-function buscar_vehiculo($conexion, $buscarID, $buscado){
-    // se prepara el pasaje de fila de tabla
-    $buscar = $conexion->prepare("SELECT * FROM `tbl_cochera` WHERE `dominio`=:id");
-    // se asigna los valores del get a la consulta
-    $buscar->bindValue(":id", $buscarID);  
-    $buscar->execute();
-    $buscado = $buscar->fetch(PDO::FETCH_ASSOC);
-}
-if(isset($_GET["txtID"])){
-    // se recolecta los datos de get
+    // Preparar la consulta SQL para seleccionar la fila
+    $retirar = $conexion->prepare("SELECT * FROM `tbl_cochera` WHERE `cochera`=:id");
+    $retirar->bindValue(":id", $retirarID);
+    $retirar->execute();
+    //preparo un array para introducir los datos de la fila
+    $fila= $retirar->fetch(pdo::FETCH_ASSOC);
+    if($fila){
+        $cochera = $fila['cochera'];
+        $nombre = $fila['nombre'];
+        $apellido = $fila['apellido'];
+        $marca = $fila['marca'];
+        $modelo = $fila['modelo'];
+        $dom = $fila['dominio'];
+        $color = $fila['color'];
+        $tipo = $fila['tipo'];
+        $obs = $fila['obs'];
+        $fechain = $fila['fechain'];
+        $horain = $fila['horain']; 
+    } ;      
+    //asigno todas las variables a cada columna correspondiente
+    $registrar = $conexion->prepare("INSERT INTO `tbl_registro`(`ncochera`,`nombre`,`apellido`,`marca`,`modelo`,`dominio`,`color`,`tipo`,`obs`,`fechain`,`horain`) VALUES ('$cochera','$nombre','$apellido','$marca','$modelo','$dom','$color','$tipo','$obs','$fechain','$horain')");          
+    $registrar->execute();
+}   
+if(isset($_GET["txtID"])){    
     $txtID = ((isset($_GET["txtID"])) ? $_GET["txtID"] : "");
     vaciar_registro($conexion, $txtID);
-} elseif(isset($_GET["retirarID"])){
-    // se recolecta los datos de get
-    $retirarID = ((isset($_GET["retirarID"])) ? $_GET["retirarID"] : "");
-    retirar_vehiculo($conexion, $retirarID);    
-} elseif(isset($_GET["buscarID"])){
-    // se recolecta los datos de get
-    $buscarID = ((isset($_GET["buscarID"])) ? $_GET["buscarID"] : "");
-    buscar_vehiculo($conexion, $buscarID, $buscado); 
-    header("Location:../busqueda/buscado.php?buscarID=");
-    print_r($buscado);
+    header("Location:../../index.php");
     exit;
-}
-// if(isset($_GET["retirarID"])){
-//     $retirarID = ((isset($_GET["retirarID"])) ? $_GET["retirarID"] : "");
-//     // se prepara el pase de inmformacion a la tabla de vehiculos retirados
-//     $retirar = $conexion->prepare("UPDATE `tbl_cochera` SET `nombre`='',`apellido`='',`marca`='',`modelo`='',`dominio`='',`color`='',`tipo`='',`obs`='',`fechain`='',`horain`='' where `cochera`=:id");
-//     // se prepara la eliminacion de tabla
-//     $retirar = $conexion->prepare("UPDATE `tbl_cochera` SET `nombre`='',`apellido`='',`marca`='',`modelo`='',`dominio`='',`color`='',`tipo`='',`obs`='',`fechain`='',`horain`='' where `cochera`=:id");
-//     // se asigna los valores del get a la consulta
-//     $retirar->bindValue(":id", $retirarID);
-//     $retirar->execute();
-//         header("Location:../../index.php");
-//         exit;
-// }
+} elseif(isset($_GET["retirarID"])){    
+    $retirarID = ((isset($_GET["retirarID"])) ? $_GET["retirarID"] : "");
+    retirar_vehiculo($conexion, $retirarID);
+    vaciar_registro($conexion, $retirarID);  
+    header("Location:../../index.php");
+    exit;  
+}elseif(isset($_GET["borrarID"])){
+    $borrarID=((isset($_GET["borrarID"])) ? $_GET["borrarID"] : "");
+    borrar_registro($conexion, $borrarID);
+    header("Location:../busqueda/buscar.php");
+    exit;
+};

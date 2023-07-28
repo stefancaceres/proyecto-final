@@ -55,12 +55,7 @@
     };
 ?>
         <div class="container cont mt-2 mb-5">
-            <div class="row ">
-                <!-- primera col -->
-                <!-- primera columna -->
-                <!-- primera columna -->
-                <!-- primera columna -->
-                <!-- primera columna -->
+            <div class="row ">                
                 <!-- primera columna -->
                 <div class="col-md-4 contformu">
                     <div class="contitulo"> 
@@ -148,13 +143,7 @@
                             <p>La cochera no tiene mas espacio, retire algun vehiculo para poder ingresar otro.</p>
                         </div>
                     </form>
-                </div>
-                
-
-                <!-- segunda columna -->
-                <!-- segunda columna -->
-                <!-- segunda columna -->
-                <!-- segunda columna -->
+                </div>               
                 <!-- segunda columna -->
                 <div class="col-md contcochera">
                     <div class="contitulo">
@@ -250,7 +239,7 @@
                                             <!-- botones -->
                                             <div class="modal-footer">
                                                 <a type="button" class="btn btn-primary">Editar</a>
-                                                <a type="button" class="btn btn-warning" href="./secciones/backend/recepcion.php?txtID=<?php echo $registro ['cochera']; ?>">Retirar</a>
+                                                <a type="button" class="btn btn-warning" href="./secciones/backend/recepcion.php?retirarID=<?php echo $registro ['cochera']; ?>">Retirar</a>
                                                 <a type="button" class="btn btn-danger" href="./secciones/backend/recepcion.php?txtID=<?php echo $registro ['cochera']; ?>">Eliminar</a>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                             </div>
