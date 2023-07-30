@@ -16,7 +16,7 @@
         $modelo = (isset($_POST["modelo"])? $_POST["modelo"] : "");
         $dom = (isset($_POST["dom"])? $_POST["dom"] : "");
         $color = (isset($_POST["color"])? $_POST["color"] : "");
-        $tipo = (isset($_POST["tipo"]));
+        $tipo = (isset($_POST["tipo"])? $_POST["tipo"] : "");
         $obs = (isset($_POST["obs"])? $_POST["obs"] : "");
         $fechain = (isset($_POST["fechain"])? $_POST["fechain"] : "");
         $horain = (isset($_POST["horain"])? $_POST["horain"] : "");

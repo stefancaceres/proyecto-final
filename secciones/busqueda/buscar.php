@@ -115,12 +115,12 @@ $list_tbl_registro = $verTabla2->fetchAll(pdo::FETCH_ASSOC);
                                 <?php echo $registro2 ['apellido'] . ' ' ; echo $registro2['nombre']; ?>
                             </td>
                             <td>
-                                <a class=" btn btn-primary" href="index.php?txtID=<?php echo $registro2 ['ncochera']; ?>" data-bs-toggle="modal" data-bs-target="#ventanaEmergente<?php echo $registro2 ['ncochera']; ?>" >Ver</a>
+                                <a class=" btn btn-primary" href="index.php?txtID=<?php echo $registro2 ['id']; ?>" data-bs-toggle="modal" data-bs-target="#ventanaEmergente<?php echo $registro2 ['id']; ?>" >Ver</a>
                             </td>
                         </tr>
                         <!-- Ventana emergente de datos -->
                         <!-- Ventana emergente de datos -->
-                        <div class="modal fade" id="ventanaEmergente<?php echo $registro2 ['ncochera']; ?>" tabindex="-1" aria-labelledby="ventanaEmergenteLabel" aria-hidden="true">
+                        <div class="modal fade" id="ventanaEmergente<?php echo $registro2 ['id']; ?>" tabindex="-1" aria-labelledby="ventanaEmergenteLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content ventanaedit">
                                 <div class="modal-header">

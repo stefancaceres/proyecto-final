@@ -1,36 +1,3 @@
-// const formu = document.querySelector('contformu');
-// const input = document.querySelector('#formulario');
-
-// formu.addEventListener('focus', function() {
-//     formu.classList.add('cambiaformu');
-//     });
-
-// input.addEventListener('focus', function() {
-//     input.classList.add('cambiaformu');
-//     });
-
-
-// validacion de campos
-function validarCampos() {
-    var campos = document.querySelectorAll('input, select, formu, textarea');
-    var camposValidados = true;
-
-    for (var i = 0; i < campos.length; i++) {
-        if (campos[i].name!== 'obs' && campos[i].value === '') {
-            camposValidados = false;
-            break;
-        }
-    }
-
-    if (camposValidados) {
-        location.reload("index.php");
-    }
-    else{
-        
-    }
-}
-
-
 
 // Muestra de carteles de error
 var formulario = document.getElementsByClassName('botonformu');
@@ -39,7 +6,7 @@ formulario.addEventListener('submit', function(event)
     var nombre = document.getElementById('nombre').value;
     var apellido = document.getElementById('apellido').value;
 
-    if (nombre === '' || email === '') {
+    if (nombre === '' || apellido === '') {
         event.preventDefault();
         document.getElementById('mensajeError').style.display = 'block';
     }
